@@ -47,18 +47,18 @@ const NavButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const NotificationDrawer = styled(Box)(({ theme }) => ({
-  position: "fixed",
-  top: "64px",
-  right: 0,
-  width: "100%", // Full width on mobile, 400px on larger screens
-  height: "100%",
-  backgroundColor: "#0C0C0E",
-  boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.1)",
-  zIndex: 1200,
-  overflowY: "auto",
-  transition: "width 0.3s ease", // Smooth width transition
-}));
+const NotificationDrawer = styled(Box)(({ theme, isMobile }) => ({
+    position: "fixed",
+    top: "64px",
+    right: 0,
+    width: 400, // Constrain to max width of 400px
+    height: "100%",
+    backgroundColor: "#0C0C0E",
+    boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.1)",
+    zIndex: 1200,
+    overflowY: "auto",
+    transition: "width 0.3s ease", // Smooth width transition
+  }));
 
 // Custom full-width Menu for mobile
 const FullWidthMenu = styled(Menu)(({ theme }) => ({
