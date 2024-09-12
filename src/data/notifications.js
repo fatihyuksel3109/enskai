@@ -1,0 +1,17 @@
+export const mockNotifications = [
+  { id: 1, type: 'team', content: 'Manchester United is looking for a striker', read: false },
+  { id: 2, type: 'player', content: 'New player assigned: John Doe, 22, FC Barcelona', read: false },
+  { id: 3, type: 'proposal', content: 'Proposal received for Jane Smith to join Arsenal', read: false },
+  { id: 4, type: 'team', content: 'Real Madrid is seeking a midfielder', read: false },
+  { id: 5, type: 'player', content: 'Update on player: Michael Johnson, contract negotiation', read: false },
+  { id: 6, type: 'team', content: 'Liverpool is searching for a goalkeeper', read: false },
+  { id: 7, type: 'proposal', content: 'Proposal for John Doe to join Paris Saint-Germain', read: false },
+  { id: 8, type: 'player', content: 'Player assigned: Alex Lee, 19, Manchester City', read: false },
+  { id: 9, type: 'team', content: 'Bayern Munich needs a right-back', read: false },
+  { id: 10, type: 'proposal', content: 'Proposal for Michael Johnson to join Juventus', read: false },
+  { id: 11, type: 'team', content: 'AC Milan is looking for a forward', read: false },
+  { id: 12, type: 'player', content: 'New player assigned: Sarah Green, 25, Chelsea FC', read: false },
+  { id: 13, type: 'proposal', content: 'Proposal for Sarah Green to join Tottenham Hotspur', read: false },
+  { id: 14, type: 'team', content: 'Barcelona is looking for a defender', read: false },
+  { id: 15, type: 'proposal', content: 'Proposal for Alex Lee to join Inter Milan', read: false },
+];
