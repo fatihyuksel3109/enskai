@@ -47,11 +47,11 @@ const NavButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const NotificationDrawer = styled(Box)(({ theme, isMobile }) => ({
+const NotificationDrawer = styled(Box)(({ theme }) => ({
   position: "fixed",
   top: "64px",
   right: 0,
-  width: isMobile ? "100%" : 400, // Full width on mobile, 400px on larger screens
+  width: "100%", // Full width on mobile, 400px on larger screens
   height: "100%",
   backgroundColor: "#0C0C0E",
   boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.1)",
@@ -165,7 +165,7 @@ const Header = () => {
 
       {/* Notification panel slides from the right */}
       <Slide direction="left" in={openNotifications} mountOnEnter unmountOnExit>
-        <NotificationDrawer isMobile={isMobile}>
+        <NotificationDrawer>
           <NotificationsPanel onClose={handleCloseNotifications} />
         </NotificationDrawer>
       </Slide>
