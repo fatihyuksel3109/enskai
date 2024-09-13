@@ -1,51 +1,44 @@
-import React, { useState } from 'react';
-import { Button, TextField, Box, MenuItem } from '@mui/material';
+import React from 'react';
+import { Button, Box } from '@mui/material';
 import { useNotificationContext } from '../contexts/NotificationContext';
+import SportsFootballIcon from '@mui/icons-material/SportsFootball';
+import PersonIcon from '@mui/icons-material/Person';
+import DescriptionIcon from '@mui/icons-material/Description';
 
-const AddNotificationForm = () => {
+// Define available icons
+const icons = [<SportsFootballIcon />, <PersonIcon />, <DescriptionIcon />];
+
+const getRandomIcon = () => {
+  const randomIndex = Math.floor(Math.random() * icons.length);
+  return icons[randomIndex];
+};
+
+const AddNotificationButton = () => {
   const { addNotification } = useNotificationContext();
-  const [content, setContent] = useState('');
-  const [type, setType] = useState('team');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (content.trim()) {
-      addNotification({ id: Date.now(), content, type });
-      setContent('');
-      setType('team');
-    }
+  const handleAddNotification = () => {
+    const defaultMessage = 'This is a default notification message.';
+    const defaultType = ['team', 'player', 'proposal'][Math.floor(Math.random() * 3)];
+    
+    addNotification({
+      id: Date.now(),
+      content: defaultMessage,
+      type: defaultType,
+      icon: getRandomIcon() // Set a random icon
+    });
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ padding: 2 }}>
-      <TextField
-        fullWidth
-        id="notification-content" // Added id
-        name="notificationContent" // Added name
-        label="Notification Content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <TextField
-        select
-        fullWidth
-        id="notification-type" // Added id
-        name="notificationType" // Added name
-        label="Notification Type"
-        value={type}
-        onChange={(e) => setType(e.target.value)}
-        sx={{ marginBottom: 2 }}
+    <Box sx={{ textAlign: 'center', marginTop: 2 }}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleAddNotification}
       >
-        <MenuItem value="team">Team</MenuItem>
-        <MenuItem value="player">Player</MenuItem>
-        <MenuItem value="proposal">Proposal</MenuItem>
-      </TextField>
-      <Button type="submit" variant="contained" color="primary">
         Add Notification
       </Button>
     </Box>
   );
 };
 
-export default AddNotificationForm;
+export default AddNotificationButton;

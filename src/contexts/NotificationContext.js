@@ -1,34 +1,8 @@
 // src/contexts/NotificationContext.js
 import React, { createContext, useContext, useState } from 'react';
 import { Snackbar, Alert, Slide, IconButton, Box } from '@mui/material';
-import SportsFootballIcon from '@mui/icons-material/SportsFootball';
-import PersonIcon from '@mui/icons-material/Person';
-import DescriptionIcon from '@mui/icons-material/Description';
 import CloseIcon from '@mui/icons-material/Close';
 import { mockNotifications } from '../data/notifications';
-
-// Define the icons based on the notification type
-const getIcon = (type) => {
-  switch (type) {
-    case 'team':
-      return <SportsFootballIcon />;
-    case 'player':
-      return <PersonIcon />;
-    case 'proposal':
-      return <DescriptionIcon />;
-    default:
-      return null;
-  }
-};
-
-// Common styles for notifications and alerts
-const notificationStyles = {
-  backgroundColor: '#0C0C0E',
-  color: '#FFFFFF',
-  borderBottom: '1px solid #1E1E20',
-  borderRadius: '4px',
-  boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-};
 
 const NotificationContext = createContext();
 
@@ -41,7 +15,7 @@ export const NotificationProvider = ({ children }) => {
   const addNotification = (notification) => {
     setNotifications((prev) => [notification, ...prev]);
     setSnackbarMessage(notification.content);
-    setSnackbarIcon(getIcon(notification.type)); // Set the icon
+    setSnackbarIcon(notification.icon); // Use the icon from the notification
     setSnackbarOpen(true);
   };
 
@@ -87,7 +61,8 @@ export const NotificationProvider = ({ children }) => {
         TransitionComponent={Slide}
         sx={{
           '& .MuiSnackbarContent-root': {
-            ...notificationStyles,
+            backgroundColor: '#FFD54F', // Yellowish background
+            color: '#000000', // Black text
             width: 'auto',
             padding: 0,
           },
@@ -98,7 +73,8 @@ export const NotificationProvider = ({ children }) => {
           severity="info"
           sx={{
             width: '100%',
-            ...notificationStyles,
+            backgroundColor: '#FFD54F', // Yellowish background
+            color: '#000000', // Black text
             padding: '8px 16px',
             alignItems: 'center',
             '& .MuiAlert-icon': {
@@ -110,7 +86,7 @@ export const NotificationProvider = ({ children }) => {
               size="small"
               color="inherit"
               onClick={handleCloseSnackbar}
-              sx={{ color: '#FFD700' }}
+              sx={{ color: '#000000' }} // Black color for the close icon
             >
               <CloseIcon />
             </IconButton>
