@@ -12,6 +12,7 @@ export const NotificationProvider = ({ children }) => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarIcon, setSnackbarIcon] = useState(null);
 
+  // Add notification with snackbar display
   const addNotification = (notification) => {
     setNotifications((prev) => [notification, ...prev]);
     setSnackbarMessage(notification.content);
@@ -19,24 +20,29 @@ export const NotificationProvider = ({ children }) => {
     setSnackbarOpen(true);
   };
 
+  // Remove notification from the list
   const removeNotification = (id) => {
     setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
 
+  // Mark notification as read, but keep it in the list
   const markNotificationAsRead = (id) => {
     setNotifications((prev) =>
-      prev
-        .map((n) => (n.id === id ? { ...n, read: true } : n))
-        .filter((n) => !n.read)
+      prev.map((n) =>
+        n.id === id ? { ...n, read: true } : n
+      )
     );
   };
 
+  // Remove all notifications
   const clearAllNotifications = () => {
     setNotifications([]);
   };
 
+  // Get count of unread notifications
   const unreadCount = notifications.filter((n) => !n.read).length;
 
+  // Close snackbar after the set duration
   const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
   };
@@ -102,4 +108,5 @@ export const NotificationProvider = ({ children }) => {
   );
 };
 
+// Custom hook for accessing the Notification context
 export const useNotificationContext = () => useContext(NotificationContext);

@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NotificationProvider } from './contexts/NotificationContext';
 import Header from './components/Header';
-import AddNotificationForm from './components/AddNotificationForm';
+import AddNotificationButton from './components/AddNotificationButton';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<AddNotificationForm />} />
+          <Route path="/" element={<AddNotificationButton />} />
         </Routes>
       </Router>
     </NotificationProvider>

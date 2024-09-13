@@ -1,5 +1,5 @@
 import React from 'react';
-import AddNotificationForm from '../components/AddNotificationForm';
+import AddNotificationButton from '../components/AddNotificationButton';
 import { NotificationProvider } from '../contexts/NotificationContext';
 
 const HomePage = () => {
@@ -8,7 +8,7 @@ const HomePage = () => {
     <NotificationProvider>
       <div style={{ padding: 20 }}>
         <h1>Notification System</h1>
-        <AddNotificationForm />
+        <AddNotificationButton />
       </div>
     </NotificationProvider>
   );
