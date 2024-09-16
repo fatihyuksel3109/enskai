@@ -5,8 +5,8 @@ import { styled } from '@mui/system';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import PersonIcon from '@mui/icons-material/Person';
 import DescriptionIcon from '@mui/icons-material/Description';
-import NotificationDetailModal from './NotificationDetailModal';
-import { useNotificationContext } from '../../contexts/NotificationContext'; // Import the context
+import NotificationDetailModal from './NotificationDetailModal'; // Assuming this is the path
+import { useNotificationContext } from '../contexts/NotificationContext'; // Import your context here
 
 const ModalContent = styled(Box)(({ theme }) => ({
   position: 'absolute',
@@ -32,21 +32,19 @@ const NotificationIcon = ({ type }) => {
   }
 };
 
-const AllNotificationsModal = ({ open, onClose, notifications }) => {
-  const { markNotificationAsRead } = useNotificationContext(); // Access the markNotificationAsRead function from context
+const AllNotificationsModal = ({ open, onClose }) => {
+  const { notifications, markNotificationAsRead } = useNotificationContext();
   const [selectedNotification, setSelectedNotification] = useState(null);
 
-  // Handler for clicking on a notification to view details and mark as read
   const handleNotificationClick = (notification) => {
     setSelectedNotification(notification);
 
-    // Mark the notification as read when opened
+    // Mark notification as read
     if (!notification.read) {
-      markNotificationAsRead(notification.id);
+      markNotificationAsRead(notification.id); // Use the context function
     }
   };
 
-  // Close detail modal and clear selected notification
   const handleDetailClose = () => {
     setSelectedNotification(null);
   };
@@ -68,7 +66,7 @@ const AllNotificationsModal = ({ open, onClose, notifications }) => {
                 <ListItem
                   key={notification.id}
                   sx={{ borderBottom: '1px solid #1E1E20', cursor: 'pointer' }}
-                  onClick={() => handleNotificationClick(notification)} // Open detailed view on click
+                  onClick={() => handleNotificationClick(notification)}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Box sx={{ marginRight: 2, color: '#FFD700' }}>
@@ -77,7 +75,10 @@ const AllNotificationsModal = ({ open, onClose, notifications }) => {
                     <Typography
                       flex={1}
                       fontSize="0.9rem"
-                      sx={{ fontWeight: notification.read ? 'normal' : 'bold', opacity: notification.read ? 0.6 : 1 }}
+                      sx={{
+                        fontWeight: notification.read ? 'normal' : 'bold',
+                        opacity: notification.read ? 0.6 : 1,
+                      }}
                     >
                       {notification.content}
                     </Typography>
@@ -89,7 +90,6 @@ const AllNotificationsModal = ({ open, onClose, notifications }) => {
         </Fade>
       </Modal>
 
-      {/* Notification detail modal */}
       {selectedNotification && (
         <NotificationDetailModal
           selectedNotification={selectedNotification}
