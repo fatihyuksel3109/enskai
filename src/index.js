@@ -10,5 +10,5 @@ root.render(
   <React.StrictMode>
     <CssBaseline />
     <App />
-  </React.StrictMode> // No need to pass 'document.getElementById('root')' here
+  </React.StrictMode> 
 );

@@ -5,7 +5,7 @@ import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import PersonIcon from '@mui/icons-material/Person';
 import DescriptionIcon from '@mui/icons-material/Description';
 
-// Define available icons
+
 const icons = {
   team: <SportsSoccerIcon />,
   player: <PersonIcon />,
@@ -44,14 +44,14 @@ const getRandomDetails = (type) => {
 
 const AddNotificationButton = () => {
   const { addNotification } = useNotificationContext();
-  const [isDisabled, setIsDisabled] = useState(false); // State to control button disable
+  const [isDisabled, setIsDisabled] = useState(false); 
 
   const handleAddNotification = () => {
     const defaultMessage = 'This is a default notification message.';
     const types = ['team', 'player', 'proposal'];
     const defaultType = types[Math.floor(Math.random() * types.length)];
     
-    // Add the notification
+    
     addNotification({
       id: Date.now(),
       content: defaultMessage,
@@ -60,10 +60,10 @@ const AddNotificationButton = () => {
       icon: getRandomIcon(defaultType)
     });
 
-    // Disable the button for 3 seconds
+    
     setIsDisabled(true);
     setTimeout(() => {
-      setIsDisabled(false); // Re-enable after 3 seconds
+      setIsDisabled(false); 
     }, 3000);
   };
 
@@ -73,7 +73,7 @@ const AddNotificationButton = () => {
         variant="contained"
         color="primary"
         onClick={handleAddNotification}
-        disabled={isDisabled} // Disable the button based on state
+        disabled={isDisabled} 
       >
         Add Notification
       </Button>

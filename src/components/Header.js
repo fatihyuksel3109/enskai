@@ -28,7 +28,7 @@ const Logo = styled(Box)({
   flex: 1,
   display: "flex",
   alignItems: "center",
-  cursor: "pointer", // make the logo clickable
+  cursor: "pointer", 
 });
 
 const NavItems = styled(Box)(({ theme }) => ({
@@ -51,25 +51,25 @@ const NotificationDrawer = styled(Box)(({ theme, isMobile }) => ({
     position: "fixed",
     top: "64px",
     right: 0,
-    width: 400, // Constrain to max width of 400px
+    width: 400, 
     height: "100%",
     backgroundColor: "#0C0C0E",
     boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.1)",
     zIndex: 1200,
     overflowY: "auto",
-    transition: "width 0.3s ease", // Smooth width transition
+    transition: "width 0.3s ease", 
   }));
 
-// Custom full-width Menu for mobile
+
 const FullWidthMenu = styled(Menu)(({ theme }) => ({
   "& .MuiPaper-root": {
-    width: "100%", // Full width on mobile
-    maxWidth: "100%", // Remove the max width limitation
-    left: 0, // Align to the left edge
-    right: 0, // Align to the right edge
-    top: "64px", // Adjust to header height
-    backgroundColor: "#0C0C0E", // Background color
-    color: "#FFFFFF", // Text color
+    width: "100%", 
+    maxWidth: "100%", 
+    left: 0, 
+    right: 0, 
+    top: "64px", 
+    backgroundColor: "#0C0C0E", 
+    color: "#FFFFFF", 
     paddingLeft: "16px",
   },
 }));

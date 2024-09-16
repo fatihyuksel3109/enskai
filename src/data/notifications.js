@@ -2,7 +2,7 @@ export const mockNotifications = [
   {
     id: 1,
     type: 'team',
-    content: 'Man Utd seeks a striker.', // Short version for the panel
+    content: 'Man Utd seeks a striker.',
     details: {
       name: 'Manchester United',
       country: 'England',
@@ -16,7 +16,7 @@ export const mockNotifications = [
   {
     id: 2,
     type: 'player',
-    content: 'John Doe joins FC Barcelona.', // Short version for the panel
+    content: 'John Doe joins FC Barcelona.',
     details: {
       name: 'John Doe',
       age: 22,
@@ -29,7 +29,7 @@ export const mockNotifications = [
   {
     id: 3,
     type: 'proposal',
-    content: 'Proposal for Jane Smith to Arsenal.', // Short version for the panel
+    content: 'Proposal for Jane Smith to Arsenal.',
     details: {
       sentPlayer: 'Jane Smith',
       sender: 'Chelsea FC',
@@ -41,7 +41,7 @@ export const mockNotifications = [
   {
     id: 4,
     type: 'team',
-    content: 'Real Madrid seeks midfielder.', // Short version for the panel
+    content: 'Real Madrid seeks midfielder.',
     details: {
       name: 'Real Madrid',
       country: 'Spain',
@@ -55,7 +55,7 @@ export const mockNotifications = [
   {
     id: 5,
     type: 'player',
-    content: 'Michael Johnson contract negotiation.', // Short version for the panel
+    content: 'Michael Johnson contract negotiation.',
     details: {
       name: 'Michael Johnson',
       age: 24,
@@ -68,7 +68,7 @@ export const mockNotifications = [
   {
     id: 6,
     type: 'proposal',
-    content: 'Proposal for John Doe to PSG.', // Short version for the panel
+    content: 'Proposal for John Doe to PSG.',
     details: {
       sentPlayer: 'John Doe',
       sender: 'Manchester United',
@@ -80,7 +80,7 @@ export const mockNotifications = [
   {
     id: 7,
     type: 'team',
-    content: 'Liverpool seeks a goalkeeper.', // Short version for the panel
+    content: 'Liverpool seeks a goalkeeper.',
     details: {
       name: 'Liverpool FC',
       country: 'England',
@@ -94,7 +94,7 @@ export const mockNotifications = [
   {
     id: 8,
     type: 'player',
-    content: 'Alex Lee, 19, joins Manchester City.', // Short version for the panel
+    content: 'Alex Lee, 19, joins Manchester City.',
     details: {
       name: 'Alex Lee',
       age: 19,
@@ -107,7 +107,7 @@ export const mockNotifications = [
   {
     id: 9,
     type: 'proposal',
-    content: 'Proposal for Sarah Green to join Tottenham.', // Short version for the panel
+    content: 'Proposal for Sarah Green to join Tottenham.',
     details: {
       sentPlayer: 'Sarah Green',
       sender: 'Chelsea FC',

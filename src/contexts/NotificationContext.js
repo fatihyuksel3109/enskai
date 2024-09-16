@@ -11,20 +11,20 @@ export const NotificationProvider = ({ children }) => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarIcon, setSnackbarIcon] = useState(null);
 
-  // Add notification with snackbar display
+  
   const addNotification = (notification) => {
     setNotifications((prev) => [notification, ...prev]);
     setSnackbarMessage(notification.content);
-    setSnackbarIcon(notification.icon); // Use the icon from the notification
+    setSnackbarIcon(notification.icon); 
     setSnackbarOpen(true);
   };
 
-  // Remove notification from the list
+  
   const removeNotification = (id) => {
     setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
 
-  // Mark notification as read, but keep it in the list
+  
   const markNotificationAsRead = (id) => {
     setNotifications((prev) =>
       prev.map((n) =>
@@ -33,18 +33,18 @@ export const NotificationProvider = ({ children }) => {
     );
   };
 
-  // Remove all notifications
+  
   const clearAllNotifications = () => {
     setNotifications([]);
   };
 
-  // Get total count of notifications
+  
   const totalNotifications = notifications.length;
 
-  // Get count of unread notifications
+  
   const unreadCount = notifications.filter((n) => !n.read).length;
 
-  // Close snackbar after the set duration
+  
   const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
   };
@@ -58,7 +58,7 @@ export const NotificationProvider = ({ children }) => {
         markNotificationAsRead,
         clearAllNotifications,
         unreadCount,
-        totalNotifications, // Pass totalNotifications in the context
+        totalNotifications, 
       }}
     >
       {children}
@@ -70,8 +70,8 @@ export const NotificationProvider = ({ children }) => {
         TransitionComponent={Slide}
         sx={{
           '& .MuiSnackbarContent-root': {
-            backgroundColor: '#FFD54F', // Yellowish background
-            color: '#000000', // Black text
+            backgroundColor: '#FFD54F', 
+            color: '#000000', 
             width: 'auto',
             padding: 0,
           },
@@ -82,12 +82,12 @@ export const NotificationProvider = ({ children }) => {
           severity="info"
           sx={{
             width: '100%',
-            backgroundColor: '#FFD54F', // Yellowish background
-            color: '#000000', // Black text
+            backgroundColor: '#FFD54F', 
+            color: '#000000', 
             padding: '8px 16px',
             alignItems: 'center',
             '& .MuiAlert-icon': {
-              display: 'none', // Hide the default icon
+              display: 'none', 
             },
           }}
           action={
@@ -95,7 +95,7 @@ export const NotificationProvider = ({ children }) => {
               size="small"
               color="inherit"
               onClick={handleCloseSnackbar}
-              sx={{ color: '#000000' }} // Black color for the close icon
+              sx={{ color: '#000000' }} 
             >
               <CloseIcon />
             </IconButton>
@@ -111,5 +111,5 @@ export const NotificationProvider = ({ children }) => {
   );
 };
 
-// Custom hook for accessing the Notification context
+
 export const useNotificationContext = () => useContext(NotificationContext);

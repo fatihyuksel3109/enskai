@@ -1,9 +1,9 @@
 import React from 'react';
 import { ListItem, Typography, IconButton, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';  // Import this
-import PersonIcon from '@mui/icons-material/Person';  // Import this
-import DescriptionIcon from '@mui/icons-material/Description';  // Import this
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';  
+import PersonIcon from '@mui/icons-material/Person';  
+import DescriptionIcon from '@mui/icons-material/Description';  
 import { styled } from '@mui/system';
 
 const NotificationItem = styled(ListItem)(({ theme }) => ({
