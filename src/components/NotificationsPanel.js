@@ -22,6 +22,7 @@ const NotificationsPanel = ({ onClose }) => {
     markNotificationAsRead,
     clearAllNotifications,
     unreadCount,
+    totalNotifications
   } = useNotificationContext();
 
   const [openModal, setOpenModal] = useState(false);
@@ -82,8 +83,9 @@ const NotificationsPanel = ({ onClose }) => {
       unreadCount={unreadCount}
       onViewAll={handleOpenAllModal}
       onClearAll={clearAllNotifications}
+      totalNotifications={totalNotifications}
     />
-  ), [unreadCount, handleOpenAllModal, clearAllNotifications]);
+  ), [unreadCount, handleOpenAllModal, clearAllNotifications, totalNotifications]);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#0C0C0E', color: '#FFFFFF', padding: 2, position: 'relative' }}>

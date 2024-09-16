@@ -21,7 +21,7 @@ const ModalContent = styled(Box)(({ theme }) => ({
 const NotificationDetailModal = ({ selectedNotification, open, handleClose }) => {
   if (!selectedNotification) return null;
 
-  const { type, details } = selectedNotification;
+  const { type, content, details } = selectedNotification;
 
   return (
     <Modal open={open} onClose={handleClose} closeAfterTransition>
@@ -36,6 +36,13 @@ const NotificationDetailModal = ({ selectedNotification, open, handleClose }) =>
           >
             <CloseIcon />
           </IconButton>
+
+          {/* Short content (notification panel) */}
+          <Typography variant="body1" marginBottom={2}>
+            {content}
+          </Typography>
+
+          {/* Detailed content (modal view) */}
           <Box>
             {type === 'team' && (
               <>
@@ -44,6 +51,9 @@ const NotificationDetailModal = ({ selectedNotification, open, handleClose }) =>
                 <Typography variant="body1" marginBottom={1}>Division: {details.division}</Typography>
                 <Typography variant="body1" marginBottom={1}>Position: {details.position}</Typography>
                 <Typography variant="body1" marginBottom={1}>Financials: {details.financials}</Typography>
+                <Typography variant="body2" marginTop={2} >
+                  {details.fullContent}
+                </Typography>
               </>
             )}
             {type === 'player' && (
@@ -52,6 +62,9 @@ const NotificationDetailModal = ({ selectedNotification, open, handleClose }) =>
                 <Typography variant="body1" marginBottom={1}>Age: {details.age}</Typography>
                 <Typography variant="body1" marginBottom={1}>Current Team: {details.currentTeam}</Typography>
                 <Typography variant="body1" marginBottom={1}>Position: {details.position}</Typography>
+                <Typography variant="body2" marginTop={2} >
+                  {details.fullContent}
+                </Typography>
               </>
             )}
             {type === 'proposal' && (
@@ -59,6 +72,9 @@ const NotificationDetailModal = ({ selectedNotification, open, handleClose }) =>
                 <Typography variant="body1" marginBottom={1}>Sent Player: {details.sentPlayer}</Typography>
                 <Typography variant="body1" marginBottom={1}>Sender: {details.sender}</Typography>
                 <Typography variant="body1" marginBottom={1}>Salary: {details.salary}</Typography>
+                <Typography variant="body2" marginTop={2} >
+                  {details.fullContent}
+                </Typography>
               </>
             )}
           </Box>

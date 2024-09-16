@@ -29,16 +29,14 @@ const ViewAllButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const NotificationHeader = ({ unreadCount, onViewAll, onClearAll }) => (
+const NotificationHeader = ({ totalNotifications, unreadCount, onViewAll, onClearAll }) => (
   <Header>
-    {unreadCount > 0 && (
-      <Badge badgeContent={unreadCount} color="error">
-        <Typography variant="h6" fontWeight="bold">
-          Notifications
-        </Typography>
-      </Badge>
-    )}
-    {unreadCount > 0 && (
+    <Badge badgeContent={unreadCount} color="error">
+      <Typography variant="h6" fontWeight="bold">
+        Notifications
+      </Typography>
+    </Badge>
+    {totalNotifications > 0 && (
       <>
         <ViewAllButton onClick={onViewAll}>View All</ViewAllButton>
         <ClearAllButton onClick={onClearAll}>Clear All</ClearAllButton>

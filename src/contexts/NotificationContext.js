@@ -1,4 +1,3 @@
-// src/contexts/NotificationContext.js
 import React, { createContext, useContext, useState } from 'react';
 import { Snackbar, Alert, Slide, IconButton, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -39,6 +38,9 @@ export const NotificationProvider = ({ children }) => {
     setNotifications([]);
   };
 
+  // Get total count of notifications
+  const totalNotifications = notifications.length;
+
   // Get count of unread notifications
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -56,6 +58,7 @@ export const NotificationProvider = ({ children }) => {
         markNotificationAsRead,
         clearAllNotifications,
         unreadCount,
+        totalNotifications, // Pass totalNotifications in the context
       }}
     >
       {children}
