@@ -13,6 +13,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
@@ -109,6 +110,11 @@ const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   },
 }));
 
+const NotificationControl = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
 const Header = () => {
   const navigate = useNavigate();
   const { unreadCount } = useNotificationContext();
@@ -117,8 +123,7 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleOpenNotifications = () =>
-    setOpenNotifications(!openNotifications);
+  const handleToggleNotifications = () => setOpenNotifications(!openNotifications);
   const handleCloseNotifications = () => setOpenNotifications(false);
 
   const handleOpenMenu = (event) => {
@@ -190,13 +195,23 @@ const Header = () => {
             </NavItems>
           )}
 
-          {unreadCount > 0 && (
-            <IconButton color="inherit" onClick={handleOpenNotifications}>
-              <Badge badgeContent={unreadCount} color="error">
+          <NotificationControl>
+            {unreadCount > 0 ? (
+              <IconButton color="inherit" onClick={handleToggleNotifications}>
+                <Badge badgeContent={unreadCount} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+            ) : openNotifications ? (
+              <IconButton color="inherit" onClick={handleCloseNotifications}>
+                <CloseIcon />
+              </IconButton>
+            ) : (
+              <IconButton color="inherit" onClick={handleToggleNotifications}>
                 <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          )}
+              </IconButton>
+            )}
+          </NotificationControl>
         </Toolbar>
       </HeaderContainer>
 
