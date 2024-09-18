@@ -5,27 +5,39 @@ import { styled } from '@mui/system';
 const Header = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   borderBottom: '1px solid #1E1E20',
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  [theme.breakpoints.up('sm')]: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 }));
 
-const ClearAllButton = styled(Button)(({ theme }) => ({
-  position: 'absolute',
-  top: theme.spacing(3),
-  right: theme.spacing(3),
+const ButtonsContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(1),
+  marginTop: theme.spacing(2),
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    flexDirection: 'row',
+    marginTop: 0,
+    width: 'auto',
+  },
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#FFD700',
   color: '#000',
   '&:hover': {
     backgroundColor: '#FFC107',
   },
-}));
-
-const ViewAllButton = styled(Button)(({ theme }) => ({
-  position: 'absolute',
-  top: theme.spacing(3),
-  right: theme.spacing(16),
-  backgroundColor: '#FFD700',
-  color: '#000',
-  '&:hover': {
-    backgroundColor: '#FFC107',
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    width: 'auto',
   },
 }));
 
@@ -37,10 +49,10 @@ const NotificationHeader = ({ totalNotifications, unreadCount, onViewAll, onClea
       </Typography>
     </Badge>
     {totalNotifications > 0 && (
-      <>
-        <ViewAllButton onClick={onViewAll}>View All</ViewAllButton>
-        <ClearAllButton onClick={onClearAll}>Clear All</ClearAllButton>
-      </>
+      <ButtonsContainer>
+        <StyledButton onClick={onViewAll}>View All</StyledButton>
+        <StyledButton onClick={onClearAll}>Clear All</StyledButton>
+      </ButtonsContainer>
     )}
   </Header>
 );

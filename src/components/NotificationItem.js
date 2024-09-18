@@ -11,7 +11,7 @@ const NotificationItem = styled(ListItem)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
-  padding: theme.spacing(1),
+  padding: theme.spacing(2),
   '&:last-child': {
     borderBottom: 'none',
   },
@@ -26,30 +26,47 @@ const NotificationIcon = ({ type }) => {
   }
 };
 
+const NotificationContent = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  width: '100%',
+  overflow: 'hidden', // Prevent content from overflowing
+}));
+
+const NotificationText = styled(Typography)(({ theme }) => ({
+  flex: 1,
+  fontSize: '0.9rem',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  marginRight: theme.spacing(1), // Ensure some space between text and close button
+}));
+
 const NotificationItemComponent = ({ notification, onClick, onDismiss }) => (
   <NotificationItem onClick={onClick}>
-    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-      <Box sx={{ marginRight: 2, color: '#FFD700' }}>
+    <NotificationContent>
+      <Box sx={{ marginRight: 2, color: '#FFD700', flexShrink: 0 }}>
         <NotificationIcon type={notification.type} />
       </Box>
-      <Typography
-        flex={1}
-        fontSize="0.9rem"
-        sx={{ fontWeight: notification.read ? 'normal' : 'bold', opacity: notification.read ? 0.6 : 1 }}
+      <NotificationText
+        sx={{ 
+          fontWeight: notification.read ? 'normal' : 'bold', 
+          opacity: notification.read ? 0.6 : 1 
+        }}
       >
         {notification.content}
-      </Typography>
+      </NotificationText>
       <IconButton
         edge="end"
         onClick={(e) => {
           e.stopPropagation();
           onDismiss(notification.id);
         }}
-        sx={{ color: '#FFD700' }}
+        sx={{ color: '#FFD700', flexShrink: 0 }}
       >
         <CloseIcon />
       </IconButton>
-    </Box>
+    </NotificationContent>
   </NotificationItem>
 );
 

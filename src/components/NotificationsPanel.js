@@ -88,10 +88,21 @@ const NotificationsPanel = ({ onClose }) => {
   ), [unreadCount, handleOpenAllModal, clearAllNotifications, totalNotifications]);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#0C0C0E', color: '#FFFFFF', padding: 2, position: 'relative' }}>
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+      backgroundColor: '#0C0C0E',
+      color: '#FFFFFF',
+      padding: 2,
+      position: 'relative',
+      maxWidth: '100%',
+      overflowX: 'hidden',
+      boxSizing: 'border-box',
+    }}>
       {memoizedHeader}
 
-      <Box sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: 0 }}>
+      <Box sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: 0, width: '100%' }}>
         {notificationItems}
       </Box>
 

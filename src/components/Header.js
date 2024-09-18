@@ -5,14 +5,20 @@ import {
   Badge,
   IconButton,
   Box,
-  Slide,
   Button,
   useMediaQuery,
   Menu,
   MenuItem,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PeopleIcon from "@mui/icons-material/People";
+import BusinessIcon from "@mui/icons-material/Business";
+import InfoIcon from "@mui/icons-material/Info";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 import { styled, useTheme } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { useNotificationContext } from "../contexts/NotificationContext";
@@ -47,30 +53,59 @@ const NavButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const NotificationDrawer = styled(Box)(({ theme, isMobile }) => ({
-    position: "fixed",
-    top: "64px",
-    right: 0,
-    width: 400, 
-    height: "100%",
-    backgroundColor: "#0C0C0E",
-    boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.1)",
-    zIndex: 1200,
-    overflowY: "auto",
-    transition: "width 0.3s ease", 
-  }));
-
+const NotificationDrawer = styled(Box)(({ theme }) => ({
+  position: "fixed",
+  top: "64px",
+  right: 0,
+  width: "100%", // Full width on mobile
+  maxWidth: 400, // Max width for larger screens
+  height: "calc(100% - 64px)", // Subtract header height
+  backgroundColor: "#0C0C0E",
+  boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.1)",
+  zIndex: 1200,
+  overflowY: "auto",
+  transition: "transform 0.3s ease",
+  transform: "translateX(100%)",
+  "&.open": {
+    transform: "translateX(0)",
+  },
+  [theme.breakpoints.up("sm")]: {
+    width: 400, // Fixed width for larger screens
+  },
+}));
 
 const FullWidthMenu = styled(Menu)(({ theme }) => ({
   "& .MuiPaper-root": {
-    width: "100%", 
-    maxWidth: "100%", 
-    left: 0, 
-    right: 0, 
-    top: "64px", 
-    backgroundColor: "#0C0C0E", 
-    color: "#FFFFFF", 
-    paddingLeft: "16px",
+    width: "100%",
+    maxWidth: "100%",
+    left: "0 !important",
+    right: "0 !important",
+    top: "64px !important",
+    backgroundColor: "#0C0C0E",
+    color: "#FFFFFF",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+  },
+  "& .MuiList-root": {
+    padding: theme.spacing(1, 0),
+  },
+}));
+
+const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+  padding: theme.spacing(1.5, 3),
+  borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+  "&:last-child": {
+    borderBottom: "none",
+  },
+  "&:hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
+  },
+  "& .MuiListItemIcon-root": {
+    color: "#FFD700",
+    minWidth: "40px",
+  },
+  "& .MuiListItemText-primary": {
+    fontSize: "1rem",
+    fontWeight: 500,
   },
 }));
 
@@ -100,16 +135,16 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: "Dashboard", path: "/dashboard" },
-    { label: "Players", path: "/players" },
-    { label: "Clubs", path: "/clubs" },
-    { label: "About", path: "/about" },
-    { label: "Contact", path: "/contact" },
+    { label: "Dashboard", path: "/dashboard", icon: <DashboardIcon /> },
+    { label: "Players", path: "/players", icon: <PeopleIcon /> },
+    { label: "Clubs", path: "/clubs", icon: <BusinessIcon /> },
+    { label: "About", path: "/about", icon: <InfoIcon /> },
+    { label: "Contact", path: "/contact", icon: <ContactMailIcon /> },
   ];
 
   return (
     <>
-      <HeaderContainer position="static">
+      <HeaderContainer position="fixed">
         <Toolbar>
           <Logo onClick={() => navigate("/")}>
             <img
@@ -131,12 +166,13 @@ const Header = () => {
                 keepMounted
               >
                 {navItems.map((item) => (
-                  <MenuItem
+                  <StyledMenuItem
                     key={item.label}
                     onClick={() => handleNavigation(item.path)}
                   >
-                    {item.label}
-                  </MenuItem>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.label} />
+                  </StyledMenuItem>
                 ))}
               </FullWidthMenu>
             </>
@@ -146,6 +182,7 @@ const Header = () => {
                 <NavButton
                   key={item.label}
                   onClick={() => handleNavigation(item.path)}
+                  startIcon={item.icon}
                 >
                   {item.label}
                 </NavButton>
@@ -163,12 +200,11 @@ const Header = () => {
         </Toolbar>
       </HeaderContainer>
 
-      {/* Notification panel slides from the right */}
-      <Slide direction="left" in={openNotifications} mountOnEnter unmountOnExit>
-        <NotificationDrawer>
-          <NotificationsPanel onClose={handleCloseNotifications} />
-        </NotificationDrawer>
-      </Slide>
+      <NotificationDrawer className={openNotifications ? 'open' : ''}>
+        <NotificationsPanel onClose={handleCloseNotifications} />
+      </NotificationDrawer>
+
+      <Toolbar />
     </>
   );
 };
