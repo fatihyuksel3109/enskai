@@ -194,7 +194,8 @@ const Header = () => {
               ))}
             </NavItems>
           )}
-
+        {
+         totalNotifications === 0 ? "" :
           <NotificationControl>
             {unreadCount > 0 ? (
               <IconButton color="inherit" onClick={handleToggleNotifications}>
@@ -208,12 +209,12 @@ const Header = () => {
               </IconButton>
             ) : (
               <IconButton color="inherit" onClick={handleToggleNotifications}>
-               {
-                   totalNotifications === 0 ? "" : <NotificationsIcon />
-               }
+                <NotificationsIcon />
+               
               </IconButton>
             )}
           </NotificationControl>
+          }
         </Toolbar>
       </HeaderContainer>
 
