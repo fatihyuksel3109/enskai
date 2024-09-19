@@ -117,7 +117,7 @@ const NotificationControl = styled(Box)(({ theme }) => ({
 
 const Header = () => {
   const navigate = useNavigate();
-  const { unreadCount } = useNotificationContext();
+  const { unreadCount, totalNotifications } = useNotificationContext();
   const [openNotifications, setOpenNotifications] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -208,7 +208,9 @@ const Header = () => {
               </IconButton>
             ) : (
               <IconButton color="inherit" onClick={handleToggleNotifications}>
-                <NotificationsIcon />
+               {
+                   totalNotifications === 0 ? "" : <NotificationsIcon />
+               }
               </IconButton>
             )}
           </NotificationControl>
